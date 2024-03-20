@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SMS/Email Spam Classifier</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+  <h1>SMS/Email Spam Classifier</h1>
+
+<form action="/predict" method="post">
+    <textarea name="sms" rows="4" placeholder="Enter the message"></textarea>
+    <button type="submit">Predict</button>
+</form>
+
+<div class="result">
+  {% if prediction %}
+  <h2>from NB algorithm: {{ prediction }} with accuracy:{{accuracy1}} </h2>
+{% endif %}
+{% if prediction1 %}
+  <h2>from KNN algorithm: {{ prediction1 }} with accuracy:{{accuracy}}</h2>
+{% endif %}
+</div>
+<a href="/">Go back to home</a>
+</div>
+</body>
+</html>

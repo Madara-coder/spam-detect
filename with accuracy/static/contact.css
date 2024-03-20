@@ -1,0 +1,28 @@
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.team-member {
+  width: 30%; /* Adjust width as needed */
+  text-align: center;
+  margin: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.team-member img {
+  width: 100%; /* Adjust image size as needed */
+  border-radius: 50%;
+}
+
+.team-member h2 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.team-member p {
+  margin-bottom: 5px;
+}
