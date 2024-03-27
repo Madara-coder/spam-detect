@@ -1,28 +1,97 @@
-.team-container {
+body {
+  font-family: sans-serif;
+  letter-spacing: 1.5px;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../static/contact.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
+
+nav {
+  padding: 2rem 1rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
-.team-member {
-  width: 30%; /* Adjust width as needed */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 0 10px;
+}
+
+nav a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+nav a:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.contact {
+  font-size: 2.5rem;
+}
+
+.about {
+  font-size: 2.5rem;
+}
+
+.secondary {
+  margin-top: 5%;
   text-align: center;
-  margin: 10px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
 }
 
-.team-member img {
-  width: 100%; /* Adjust image size as needed */
-  border-radius: 50%;
+main {
+  margin-top: 5%;
+  width: 100vw;
+  color: black;
 }
 
-.team-member h2 {
-  margin-top: 10px;
-  font-size: 18px;
+.first {
+  margin-left: 22.5%;
 }
 
-.team-member p {
-  margin-bottom: 5px;
+.second {
+  margin-left: 24.5rem;
+  margin-top: -22.5rem;
+}
+
+.third {
+  margin-left: 24.5rem;
+  margin-top: -22.5rem;
+}
+
+.sub {
+  display: flex;
+  background-color: white;
+  width: 17rem;
+  height: 5rem;
+  justify-content: center;
 }

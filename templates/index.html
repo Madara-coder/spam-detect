@@ -3,30 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <title>SMS/Email Spam Classifier</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
   </head>
+
   <body>
-    <header>
+    <!-- Main Section -->
+    <div class="main">
+
+      <!-- Navigation section -->
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/about" class="about">About</a></li>
+          <li><a href="/" class="home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Home"></a></li>
+          <li><a href="/contact" class="contact">Contact</a></li>
         </ul>
       </nav>
-    </header>
-    <main>
-      <h1>SMS/Email Spam Classifier</h1>
-      <section id="home-content">
-        <p>
-          Welcome to the SMS/Email Spam Classifier! This tool helps you identify
-          spam messages.
-        </p>
-        <a href="/result"><button>Go to Result Page</button></a>
-      </section>
-    </main>
+
+      <!-- Banner area -->
+      <main class="banner">
+        <h1>SMS/Email Spam Classifier</h1>
+
+        <section id="home-content">
+          <p>
+            Welcome to the SMS/Email Spam Classifier! This tool helps you
+            identify spam messages.
+          </p>
+          <a href="/result"><button>Go to Result Page</button></a>
+        </section>
+
+      </main>
+    </div>
   </body>
 </html>
