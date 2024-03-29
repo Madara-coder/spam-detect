@@ -8,22 +8,50 @@
 </head>
 
 <body>
-  <h1>SMS/Email Spam Classifier</h1>
+  <!-- Main section -->
+  <div class="main">
 
-<form action="/predict" method="post">
-    <textarea name="sms" rows="4" placeholder="Enter the message"></textarea>
-    <button type="submit">Predict</button>
-</form>
+    <!-- Navigation section -->
+    <nav>
+      <ul>
+        <li><a href="/contact" class="contact">Contact</a></li>
+        <li><a href="/about" class="about">About</a></li>
+        <li><a href="/" class="home"><img src="../static/Logo.svg" alt="Home"
+          /></a>
+        </li>
+      </ul>
+    </nav>
 
-<div class="result">
-  {% if prediction %}
-  <h2>from NB algorithm: {{ prediction }}</h2>
-{% endif %}
-{% if prediction1 %}
-  <h2>from KNN algorithm: {{ prediction1 }}</h2>
-{% endif %}
-</div>
-<a href="/">Go back to home</a>
-</div>
+    <!-- Secondary section -->
+    <div class="secondary">
+
+      <!-- Header -->
+      <header>
+        <h1>SMS/Email Spam Classifier</h1>
+      </header>
+
+      <!-- Main -->
+      <main>
+        <form action="/predict" method="post">
+          <textarea
+            name="sms"
+            rows="4"
+            placeholder="Enter the message"
+          ></textarea>
+          <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+          {% if prediction %}
+          <h2>from NB algorithm: {{ prediction }}</h2>
+          {% endif %} {% if prediction1 %}
+          <h2>from KNN algorithm: {{ prediction1 }}</h2>
+          {% endif %}
+        </div>
+
+        <a href="/" class="go-back">Go back to home</a>
+      </main>
+    </div>
+  </div>
 </body>
 </html>
