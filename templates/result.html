@@ -35,7 +35,7 @@
             name="sms"
             rows="4"
             placeholder="Enter the message"
-          ></textarea>
+          >{{ request.form.sms }}</textarea>
           <button type="submit">Predict</button>
         </form>
 
@@ -43,7 +43,7 @@
           {% if prediction %}
           <h2>from NB algorithm: {{ prediction }}</h2>
           {% endif %} {% if prediction1 %}
-          <h2>from KNN algorithm: {{ prediction1 }}</h2>
+          <h2>from Logistic Regression algorithm: {{ prediction1 }}</h2>
           {% endif %}
         </div>
 
