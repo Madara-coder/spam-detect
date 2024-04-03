@@ -41,19 +41,18 @@
         <main>
           <form action="/predict" method="post">
             <textarea name="sms" rows="4" placeholder="Enter the message">
-{{ request.form.sms }}</textarea
-            >
+            {{ request.form.sms }}</textarea>
             <button type="submit">Predict</button>
           </form>
 
           <div class="result">
             {% if prediction %}
             <h2>
-              from NB algorithm: {{ prediction }} with accuracy:{{accuracy1}}
+              NB algorithm: {{ prediction }} with model accuracy:{{accuracy1}}
             </h2>
             {% endif %} {% if prediction1 %}
             <h2>
-              from Logistic Regression algorithm: {{ prediction1 }} with
+              Logistic Regression algorithm: {{ prediction1 }} with model
               accuracy:{{accuracy}}
             </h2>
             {% endif %}
