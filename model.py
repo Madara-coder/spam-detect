@@ -11,7 +11,7 @@ class TFIDFVectorizer:
     def fit(self, documents):
         n_docs = len(documents)
         term_counts = {}
-        
+
         # Count term occurrences in each document
         for document in documents:
             term_seen = set()
@@ -19,11 +19,11 @@ class TFIDFVectorizer:
                 if term not in term_seen:
                     term_seen.add(term)
                     term_counts[term] = term_counts.get(term, 0) + 1
-        
+
         # Calculate IDF
         for term, count in term_counts.items():
             self.idf[term] = math.log(1+n_docs / (count+1))
-        
+
         # Update vocabulary
         self.vocab.update(term_counts.keys())
 
@@ -34,14 +34,14 @@ class TFIDFVectorizer:
             term_freq = {}
             for term in document.split():
                 term_freq[term] = term_freq.get(term, 0) + 1
-            
+
             # Calculate TF-IDF
             for term, freq in term_freq.items():
                 if term in self.vocab:
                     term_idx = list(self.vocab).index(term)
                     tfidf_matrix[idx, term_idx] = freq * self.idf[term]
         return np.array(tfidf_matrix)
-    
+
 #Multinominal Naive Bayes Algorithm class
 class MultinomialNB1:
     def __init__(self):
@@ -58,7 +58,7 @@ class MultinomialNB1:
 
         # Compute conditional probabilities of each word given class
         for cls in self.classes:
-            # Select rows where class label is equal to cls
+            # Select rows where class label is equal to class
             X_cls = X[y == cls]
             # Calculate total count of words for this class
             total_count = np.sum(X_cls)
@@ -114,7 +114,7 @@ class LogisticRegression1:
     self.weights = None
 
   def sigmoid(self, z):
-    
+
     return 1 / (1 + np.exp(-z))
 
   def fit(self, X, y):
@@ -135,7 +135,7 @@ class LogisticRegression1:
   def predict(self, X):
     # Add a bias term to X
     X = np.c_[np.ones(len(X)), X]
-    return self.sigmoid(X.dot(self.weights))   
+    return self.sigmoid(X.dot(self.weights))
 #Decision Tree Algorithm class
 class Node:
     def __init__(self, feature=None, threshold=None, left=None, right=None, value=None):

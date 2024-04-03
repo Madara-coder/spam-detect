@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>SMS/Email Spam Classifier</title>
-  <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}" type="image/x-icon">
-  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SMS/Email Spam Classifier</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='logo.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='result.css') }}"
+    />
+  </head>
 
-<body>
-  <!-- Main section -->
-  <div class="main">
+  <body>
+    <!-- Main section -->
+    <div class="main">
+      <!-- Navigation section -->
+      <nav>
+        <ul>
+          <li><a href="/about" class="about">About</a></li>
+          <li>
+            <a href="/" class="home"
+              ><img src="../static/Logo.svg" alt="Home"
+            /></a>
+          </li>
+          <li><a href="/contact" class="contact">Contact</a></li>
+        </ul>
+      </nav>
 
-    <!-- Navigation section -->
-    <nav>
-      <ul>
-        <li><a href="/about" class="about">About</a></li>
-        <li><a href="/" class="home"><img src="../static/Logo.svg" alt="Home"/></a></li>
-        <li><a href="/contact" class="contact">Contact</a></li>
-      </ul>
-    </nav>
+      <!-- Secondary section -->
+      <div class="secondary">
+        <!-- Header -->
+        <header>
+          <h1>SMS/Email Spam Classifier</h1>
+        </header>
 
-    <!-- Secondary section -->
-    <div class="secondary">
+        <!-- Main -->
+        <main>
+          <form action="/predict" method="post">
+            <textarea name="sms" rows="4" placeholder="Enter the message">
+{{ request.form.sms }}</textarea
+            >
+            <button type="submit">Predict</button>
+          </form>
 
-      <!-- Header -->
-      <header>
-        <h1>SMS/Email Spam Classifier</h1>
-      </header>
+          <div class="result">
+            {% if prediction %}
+            <h2>
+              from NB algorithm: {{ prediction }} with accuracy:{{accuracy1}}
+            </h2>
+            {% endif %} {% if prediction1 %}
+            <h2>
+              from Logistic Regression algorithm: {{ prediction1 }} with
+              accuracy:{{accuracy}}
+            </h2>
+            {% endif %}
+          </div>
 
-      <!-- Main -->
-      <main>
-        <form action="/predict" method="post">
-          <textarea
-            name="sms"
-            rows="4"
-            placeholder="Enter the message"
-          >{{ request.form.sms }}</textarea>
-          <button type="submit">Predict</button>
-        </form>
-
-        <div class="result">
-          {% if prediction %}
-          <h2>from NB algorithm: {{ prediction }}</h2>
-          {% endif %} {% if prediction1 %}
-          <h2>from Logistic Regression algorithm: {{ prediction1 }}</h2>
-          {% endif %}
-        </div>
-
-        <a href="/" class="go-back">Go back to home</a>
-      </main>
+          <a href="/" class="go-back">Go back to home</a>
+        </main>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
