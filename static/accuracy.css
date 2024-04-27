@@ -63,42 +63,11 @@ nav a:hover::before {
   font-size: 2.5rem;
 }
 
-.banner {
-  margin-top: 12.5%;
+.algorithms {
+  margin-left: 30%;
 }
 
-.secondary {
-  margin-top: 4%;
-  text-align: center;
-}
-
-h1 {
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-weight: bold;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-bottom: 20px;
-  margin-left: 25%;
-}
-
-textarea {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  resize: none;
-}
-
-button {
+input {
   background-color: #dec378;
   color: white;
   padding: 10px 20px;
@@ -108,35 +77,6 @@ button {
   transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
+input:hover {
   background-color: #ecc556;
-}
-
-.result {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 15px;
-  width: 48.5%;
-  margin-left: 25%;
-  margin-bottom: 20px;
-}
-
-.result h2 {
-  margin-bottom: 10px;
-}
-
-.explanation {
-  font-size: 14px;
-  color: #666;
-}
-
-.go-back {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.go-back:hover {
-  cursor: pointer;
-  color: #ecc556;
 }

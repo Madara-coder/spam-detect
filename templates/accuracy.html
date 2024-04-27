@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SMS/Email Spam Classifier</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='accuracy.css') }}"/>
+  </head>
+
+<body>
+<div class="content-container">
+
+  <!-- Navigation section -->
+  <nav>
+    <ul>
+      <li><a href="/about" class="about">About</a></li>
+      <li><a href="/" class="home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Home"></a></li>
+      <li><a href="/contact" class="contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="algorithms">
+    <!-- Remaining section -->
+    <h1>Model Accuracy</h1>
+
+    <!-- Form Section -->
+    <form action="/accuracy" method="post">
+        <label for="model_select">Select Model:</label>
+        <select id="model_select" name="model_select" >
+            <option value="NB">NB</option>
+            <option value="LR">LR</option>
+            <option value="DT">DT</option>
+            <option value="KNN">KNN</option>
+            <option value="SVM">SVM</option>
+        </select>
+        <input type="submit" value="Show Model Evaluation">
+    </form>
+
+    <div>
+      {% if metrics %}
+        {% for model_name, metric in metrics.items() %}
+          <h2>Metrics for {{ model_name }} Model:</h2>
+          <h3>Test:</h3>
+          <p>Precision: {{ metric.precision }}</p>
+          <p>Recall: {{ metric.recall }}</p>
+          <p>F1 Score: {{ metric.f1_score }}</p>
+          <p>Accuracy: {{ metric.accuracy }}</p>
+          <h3>Train:</h3>
+          <p>Precision: {{ metric.precision_train }}</p>
+          <p>Recall: {{ metric.recall_train }}</p>
+          <p>F1 Score: {{ metric.f1_score_train }}</p>
+          <p>Accuracy: {{ metric.accuracy_train }}</p><br>
+        {% endfor %}
+     {% endif %}
+        {% if selected_model %}
+          {% if image_filename %}
+              <img src="{{ url_for('static', filename=image_filename) }}" alt="{{ selected_model }} Image">
+          {% endif %}
+          {% else %}
+          <img src="{{ url_for('static', filename='overall accuracy.png') }}" alt="Accuracy"><h2>Accuracy</h2><br>
+          <img src="{{ url_for('static', filename='overall precision.png') }}" alt="Precision"><h2>Precision</h2>
+        {% endif %}
+    </div>
+  </div>
+</div>
+</body>
