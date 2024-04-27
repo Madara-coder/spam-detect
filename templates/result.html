@@ -1,66 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SMS/Email Spam Classifier</title>
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='logo.ico') }}"
-      type="image/x-icon"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='result.css') }}"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>SMS/Email Spam Classifier</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+  <script>
+    function togglePreprocessedData() {
+      var preprocessedData = document.getElementById("preprocessed-data");
+      if (preprocessedData.style.display === "none") {
+        preprocessedData.style.display = "block";
+      } else {
+        preprocessedData.style.display = "none";
+      }
+    }
+  </script>
+</head>
 
-  <body>
-    <!-- Main section -->
-    <div class="main">
-      <!-- Navigation section -->
-      <nav>
-        <ul>
-          <li><a href="/about" class="about">About</a></li>
-          <li>
-            <a href="/" class="home"
-              ><img src="../static/Logo.svg" alt="Home"
-            /></a>
-          </li>
-          <li><a href="/contact" class="contact">Contact</a></li>
-        </ul>
-      </nav>
+<body>
+  <!-- Main section -->
+  <div class="main">
 
-      <!-- Secondary section -->
-      <div class="secondary">
-        <!-- Header -->
-        <header>
-          <h1>SMS/Email Spam Classifier</h1>
-        </header>
+    <!-- Navigation section -->
+    <nav>
+      <ul>
+        <li><a href="/about" class="about">About</a></li>
+        <li><a href="/" class="home"><img src="../static/Logo.svg" alt="Home"/></a></li>
+        <li><a href="/contact" class="contact">Contact</a></li>
+      </ul>
+    </nav>
 
-        <!-- Main -->
-        <main>
-          <form action="/predict" method="post">
-            <textarea name="sms" rows="4" placeholder="Enter the message">
-            {{ request.form.sms }}</textarea>
-            <button type="submit">Predict</button>
-          </form>
+    <!-- Secondary section -->
+    <div class="secondary">
 
-          <div class="result">
-            {% if prediction %}
-            <h2>
-              NB algorithm: {{ prediction }} with model accuracy:{{accuracy1}}
-            </h2>
-            {% endif %} {% if prediction1 %}
-            <h2>
-              Logistic Regression algorithm: {{ prediction1 }} with model
-              accuracy:{{accuracy}}
-            </h2>
-            {% endif %}
+      <!-- Header -->
+      <header>
+        <h1>SMS/Email Spam Classifier</h1>
+      </header>
+
+      <!-- Main -->
+      <main>
+        <form action="/predict" method="post">
+          <textarea name="sms" rows="4" placeholder="Enter the message">
+            {{ request.form.sms }}
+          </textarea><br>
+          <div>
+            <input type="radio" id="nb_model" name="model" value="Naive Bayes" checked>
+            <label for="nb_model">Naive Bayes model</label>
           </div>
+          <div>
+              <input type="radio" id="logistic_model" name="model" value="Logistic Regression">
+              <label for="logistic_model">Logistic Regression model</label>
+          </div>
+          <div>
+              <input type="radio" id="dt_model" name="model" value="Decision Tree" checked>
+              <label for="dt_model">Decision tree model</label>
+          </div>
+          <div>
+              <input type="radio" id="knn_model" name="model" value="KNN">
+              <label for="knn_model">KNN model</label>
+          </div>
+          <div>
+              <input type="radio" id="svm_model" name="model" value="SVM">
+              <label for="svm_model">SVM model</label>
+          </div>
+          <button type="submit">Predict</button>
+        </form>
 
-          <a href="/" class="go-back">Go back to home</a>
-        </main>
-      </div>
+        <div class="result">
+          {% if prediction %}
+          <h2>from {{selected_model}} algorithm: {{ prediction }}</h2>
+          {% endif %}
+        </div>
+        <a href="/accuracy" class="show-accuracy"><button>Show Model Evaluation</button> </a>
+       <button onclick="togglePreprocessedData()">Show Preprocessed Data</button>
+        <div id="preprocessed-data" style="display: none;">
+          <h2>Preprocessed Data:</h2>
+          <p>Original Text: {{ processed_text.original_text }}</p>
+          <p>Lowercase Text: {{ processed_text.lowercase_text }}</p>
+          <p>Tokenized Text: {{ processed_text.tokenized_text }}</p>
+          <p>Stopwords Present: {{ processed_text.stopwords_present}}</p>
+          <p>Stemmed Text: {{ processed_text.stemmed_text }}</p>
+        </div><br>
+
+        <a href="/" class="go-back">Go back to home</a>
+      </main>
     </div>
-  </body>
+  </div>
+</body>
 </html>

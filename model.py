@@ -27,6 +27,7 @@ class TFIDFVectorizer:
         # Update vocabulary
         self.vocab.update(term_counts.keys())
 
+    # Converts into the number form
     def transform(self, documents):
         tfidf_matrix = np.zeros((len(documents), len(self.vocab)))
         for idx, document in enumerate(documents):
@@ -58,7 +59,7 @@ class MultinomialNB1:
 
         # Compute conditional probabilities of each word given class
         for cls in self.classes:
-            # Select rows where class label is equal to class
+            # Select rows where class label is equal to cls
             X_cls = X[y == cls]
             # Calculate total count of words for this class
             total_count = np.sum(X_cls)
@@ -136,6 +137,7 @@ class LogisticRegression1:
     # Add a bias term to X
     X = np.c_[np.ones(len(X)), X]
     return self.sigmoid(X.dot(self.weights))
+
 #Decision Tree Algorithm class
 class Node:
     def __init__(self, feature=None, threshold=None, left=None, right=None, value=None):
@@ -186,6 +188,8 @@ class DecisionTree:
             thresholds = sorted(set(X[:, feature]))
             for threshold in thresholds:
                 left_indices = X[:, feature] < threshold
+
+                # gini-impurity formula
                 gini = self._gini_impurity(y[left_indices]) * sum(left_indices) / len(y) + \
                        self._gini_impurity(y[~left_indices]) * sum(~left_indices) / len(y)
                 if gini < best_gini:
@@ -195,6 +199,7 @@ class DecisionTree:
 
         return best_feature, best_threshold
 
+    # Gini impurity section.
     def _gini_impurity(self, y):
         _, counts = np.unique(y, return_counts=True)
         probabilities = counts / len(y)
